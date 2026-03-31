@@ -106,8 +106,25 @@
     @apply status-badge border-accent text-accent;
   }
 
+  .status-pulse {
+    animation: status-glow 2s ease-in-out infinite;
+  }
+
   .status-badge-soon {
-    @apply status-badge border-muted-foreground text-muted-foreground;
+    @apply status-badge border-muted-foreground text-muted-foreground opacity-60;
+  }
+
+  .quest-item:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    background: hsl(var(--secondary));
+  }
+
+  .quest-flash {
+    animation: quest-bg-flash 0.3s ease-out;
+  }
+
+  .world-click-flash {
+    animation: world-flash 0.15s ease-out;
   }
 }
 

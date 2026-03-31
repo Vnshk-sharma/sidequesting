@@ -46,7 +46,7 @@ const Index = () => {
         v0.1.0
       </div>
       <div className="fixed bottom-4 right-4 text-muted-foreground text-xs font-mono opacity-40">
-        localhost::sidequest
+        entering: sidequest_worlds
       </div>
     </div>
   );

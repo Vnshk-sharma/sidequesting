@@ -153,3 +153,18 @@
 .animate-fade-up-delay-2 { animation-delay: 0.2s; }
 .animate-fade-up-delay-3 { animation-delay: 0.3s; }
 .animate-fade-up-delay-4 { animation-delay: 0.4s; }
+
+@keyframes status-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0); }
+  50% { box-shadow: 0 0 8px 2px hsl(var(--accent) / 0.25); }
+}
+
+@keyframes quest-bg-flash {
+  0% { background: hsl(var(--accent) / 0.15); }
+  100% { background: transparent; }
+}
+
+@keyframes world-flash {
+  0% { background: hsl(var(--primary) / 0.12); }
+  100% { background: hsl(var(--card)); }
+}

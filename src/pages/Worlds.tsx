@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 interface WorldCard {
   id: string;
@@ -29,6 +30,16 @@ const getProgress = (worldId: string): { done: number; total: number } => {
 
 const Worlds = () => {
   const navigate = useNavigate();
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [clickFlash, setClickFlash] = useState<string | null>(null);
+
+  const handleWorldClick = (world: WorldCard) => {
+    if (!world.active || !world.path) return;
+    setClickFlash(world.id);
+    setTimeout(() => {
+      navigate(world.path!);
+    }, 150);
+  };
 
   return (
     <div className="min-h-screen grid-bg">
@@ -49,24 +60,47 @@ const Worlds = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {worlds.map((world, i) => {
             const progress = world.active ? getProgress(world.id) : null;
+            const isHovered = hoveredId === world.id;
+            const isFlashing = clickFlash === world.id;
             return (
               <div
                 key={world.id}
-                className={`animate-fade-up animate-fade-up-delay-${i + 1} ${
-                  world.active ? "panel-hover cursor-pointer" : "panel opacity-50 cursor-not-allowed"
-                } p-5 flex flex-col gap-3`}
-                onClick={() => world.active && world.path && navigate(world.path)}
+                className={`animate-fade-up animate-fade-up-delay-${i + 1} relative group ${
+                  world.active ? "cursor-pointer" : "cursor-not-allowed"
+                } p-5 flex flex-col gap-3 border transition-all duration-200 ${
+                  isFlashing ? "world-click-flash" : ""
+                } ${
+                  world.active
+                    ? "border-border bg-card hover:border-primary hover:shadow-[0_0_12px_hsl(var(--primary)/0.15)]"
+                    : "border-border bg-card opacity-50 blur-[0.3px]"
+                }`}
+                onClick={() => handleWorldClick(world)}
+                onMouseEnter={() => setHoveredId(world.id)}
+                onMouseLeave={() => setHoveredId(null)}
               >
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">{world.emoji}</span>
                   {world.active ? (
-                    <span className="status-badge-active">ACTIVE</span>
+                    <span className="status-badge-active status-pulse">ACTIVE</span>
                   ) : (
                     <span className="status-badge-soon">SOON</span>
                   )}
                 </div>
                 <h2 className="font-heading font-semibold text-foreground">{world.name}</h2>
                 <p className="text-muted-foreground text-xs">{world.description}</p>
+
+                {/* System hint on hover */}
+                {world.active && isHovered && (
+                  <span className="text-[10px] font-mono text-primary opacity-80 animate-fade-up">
+                    → click to open
+                  </span>
+                )}
+                {!world.active && isHovered && (
+                  <span className="text-[10px] font-mono text-muted-foreground opacity-60 animate-fade-up">
+                    module not yet deployed
+                  </span>
+                )}
+
                 {world.active && progress && progress.total > 0 && (
                   <div className="mt-auto pt-2">
                     <div className="flex justify-between text-xs text-muted-foreground mb-1">
@@ -87,11 +121,11 @@ const Worlds = () => {
 
           {/* Add world placeholder */}
           <div
-            className="panel border-dashed p-5 flex flex-col items-center justify-center gap-2 cursor-pointer opacity-40 hover:opacity-60 transition-opacity animate-fade-up"
+            className="add-world-card border-2 border-dashed border-border p-5 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] bg-card group animate-fade-up"
             onClick={() => alert("Fork the repo and add your own world!")}
           >
-            <span className="text-3xl text-muted-foreground">+</span>
-            <span className="text-xs text-muted-foreground font-mono">Add Your World</span>
+            <span className="text-3xl text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-125 inline-block">+</span>
+            <span className="text-xs text-muted-foreground font-mono group-hover:text-primary transition-colors duration-300">Add Your World</span>
           </div>
         </div>
       </main>

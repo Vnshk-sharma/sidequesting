@@ -1,16 +1,55 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useNavigate } from "react-router-dom";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen grid-bg flex flex-col items-center justify-center px-4">
+      <div className="max-w-xl w-full text-center space-y-8">
+        {/* Logo mark */}
+        <div className="animate-fade-up flex justify-center">
+          <div className="w-16 h-16 border-2 border-primary flex items-center justify-center">
+            <span className="text-primary font-heading text-2xl font-bold">SQ</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <div className="animate-fade-up animate-fade-up-delay-1 space-y-3">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight">
+            SideQuest Worlds
+          </h1>
+          <p className="text-muted-foreground text-sm md:text-base font-mono">
+            Explore different worlds. Complete small quests.
+          </p>
+        </div>
+
+        {/* CTA */}
+        <div className="animate-fade-up animate-fade-up-delay-2">
+          <button
+            onClick={() => navigate("/worlds")}
+            className="px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide border-none cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[0_4px_0_0_hsl(var(--primary)/0.4)] active:translate-y-0 active:shadow-none"
+          >
+            → Explore Side Quests
+          </button>
+        </div>
+
+        {/* Footer info */}
+        <div className="animate-fade-up animate-fade-up-delay-3 pt-8">
+          <p className="text-muted-foreground text-xs font-mono">
+            [ open source · modular · no backend ]
+          </p>
+        </div>
+      </div>
+
+      {/* Corner decorations */}
+      <div className="fixed top-4 left-4 text-muted-foreground text-xs font-mono opacity-40">
+        v0.1.0
+      </div>
+      <div className="fixed bottom-4 right-4 text-muted-foreground text-xs font-mono opacity-40">
+        localhost::sidequest
+      </div>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;

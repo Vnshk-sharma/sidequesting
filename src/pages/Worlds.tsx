@@ -67,11 +67,10 @@ const Worlds = () => {
                 key={world.id}
                 className={`animate-fade-up animate-fade-up-delay-${i + 1} relative group ${
                   world.active ? "cursor-pointer" : "cursor-not-allowed"
-                } p-5 flex flex-col gap-3 border transition-all duration-200 ${
-                  isFlashing ? "world-click-flash" : ""
-                } ${
-                  world.active
-                    ? "border-border bg-card hover:border-primary hover:shadow-[0_0_12px_hsl(var(--primary)/0.15)]"
+                } p-5 flex flex-col gap-3 border transition-all duration-300 ease-in-out
+                hover:scale-[1.03] hover:-translate-y-2 ${isFlashing ? "world-click-flash" : ""
+                } ${world.active
+                  ? "border-border bg-card hover:border-primary hover:shadow-[0_8px_25px_hsl(var(--primary)/0.2)]"
                     : "border-border bg-card opacity-50 blur-[0.3px]"
                 }`}
                 onClick={() => handleWorldClick(world)}

@@ -24,12 +24,18 @@ const Index = () => {
         </div>
 
         {/* CTA */}
-        <div className="animate-fade-up animate-fade-up-delay-2">
+        <div className="animate-fade-up animate-fade-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            onClick={() => navigate("/quick-start")}
+            className="w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide border-none cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[0_4px_0_0_hsl(var(--primary)/0.4)] active:translate-y-0 active:shadow-none"
+          >
+            Quick Start
+          </button>
           <button
             onClick={() => navigate("/worlds")}
-            className="px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold text-sm tracking-wide border-none cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[0_4px_0_0_hsl(var(--primary)/0.4)] active:translate-y-0 active:shadow-none"
+            className="w-full sm:w-auto px-8 py-3 bg-transparent text-primary font-heading font-semibold text-sm tracking-wide border border-primary cursor-pointer transition-all duration-200 hover:bg-primary/5 hover:translate-y-[-2px] active:translate-y-0"
           >
-            → Explore Side Quests
+            Explore Side Quests
           </button>
         </div>
 

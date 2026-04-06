@@ -7,6 +7,7 @@ import FitnessWorld from "./pages/FitnessWorld";
 import StudyWorld from "./pages/StudyWorld";
 import NotFound from "./pages/NotFound";
 import SocialWorld from "./pages/SocialWorld";
+import QuickStart from "./pages/QuickStart";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/quick-start" element={<QuickStart />} />
         <Route path="/worlds" element={<Worlds />} />
         <Route path="/worlds/fitness" element={<FitnessWorld />} />
         <Route path="/worlds/study" element={<StudyWorld />} />

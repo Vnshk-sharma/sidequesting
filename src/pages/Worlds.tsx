@@ -16,6 +16,7 @@ const worlds: WorldCard[] = [
   { id: "social", name: "Social World", emoji: "🤝", description: "Build connections, grow your network.", active: true, path: "/worlds/social" },
   { id: "creative", name: "Creative World", emoji: "🎨", description: "Express yourself through creation.", active: true, path: "/worlds/creative" },
   { id: "detox", name: "Detox World", emoji: "📵", description: "Reclaim your focus, reduce screen time.", active: true, path: "/worlds/detox" },
+  { id: "communication", name: "Communication World", emoji: "🗣️", description: "Speak clearly, listen deeply, connect confidently.", active: true, path: "/worlds/communication" },
 ];
 
 const getProgress = (worldId: string): { done: number; total: number } => {

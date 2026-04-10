@@ -7,9 +7,17 @@ import { creativeQuests } from "@/data/creativeQuests";
 import { detoxQuests } from "@/data/detoxQuests";
 import { communicationQuests } from "@/data/communicationQuests";
 import { homeQuests } from "@/data/homeQuests";
+import type { Difficulty } from "@/data/fitnessQuests";
+
+const DIFFICULTY_STYLE: Record<Difficulty, string> = {
+  Easy:   "border-emerald-500/40 text-emerald-400 bg-emerald-500/5",
+  Medium: "border-yellow-500/40  text-yellow-400  bg-yellow-500/5",
+  Hard:   "border-red-500/40     text-red-400     bg-red-500/5",
+};
 
 interface QuestWithWorld {
   id: string;
+  difficulty: Difficulty;
   title: string;
   world: string;
   emoji: string;
@@ -91,9 +99,14 @@ const RandomQuest = () => {
         >
           {quest ? (
             <>
-              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                <span>{quest.emoji}</span>
-                <span>{quest.world}</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                  <span>{quest.emoji}</span>
+                  <span>{quest.world}</span>
+                </div>
+                <span className={`text-[10px] font-mono border px-1.5 py-0.5 uppercase tracking-widest ${DIFFICULTY_STYLE[quest.difficulty]}`}>
+                  {quest.difficulty}
+                </span>
               </div>
               <p className="text-xl font-heading font-semibold text-foreground leading-snug">
                 {quest.title}

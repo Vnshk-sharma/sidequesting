@@ -12,6 +12,7 @@ import QuickStart from "./pages/QuickStart";
 import RandomQuest from "./pages/RandomQuest";
 import DetoxWorld from "./pages/DetoxWorld";
 import CommunicationWorld from "./pages/CommunicationWorld";
+import HomeWorld from "./pages/HomeWorld";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
         <Route path="/worlds/creative" element={<CreativeWorld />} />
         <Route path="/worlds/detox" element={<DetoxWorld />} />
         <Route path="/worlds/communication" element={<CommunicationWorld />} />
+        <Route path="/worlds/home" element={<HomeWorld />} />
         <Route path="/random" element={<RandomQuest />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
